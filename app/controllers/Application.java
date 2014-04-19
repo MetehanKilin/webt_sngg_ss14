@@ -18,25 +18,25 @@ public class Application extends Controller {
 
       int r = Math.abs(rand.nextInt()%max);
       session("random", ""+r);
-      return ok(index.render(min, max, false, 0));
+      return ok(index.render(min, max));
     }
 
     public static Result guess(String g) {
       if (session("random") == null) {
-        return redirect("/");
+        return ok("Press New to play again!"); //redirect("/");
       }
 
       try {
         int guess = Integer.parseInt(g);
         int r = Integer.parseInt(session("random"));
-        int res = -1;
-        if (guess > r) res = 1;
+        String res = "< secret number!";
+        if (guess > r) res = "> secret number!";
         else if (guess == r) {
-          res = 0;
+          res = "correct!";
           session().clear();
         }
 
-        return ok(index.render(min, max, true, res));
+        return ok(res);
       }
       catch (NumberFormatException e) {
         return redirect("/");
