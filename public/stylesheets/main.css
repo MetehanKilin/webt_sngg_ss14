@@ -1,0 +1,33 @@
+body
+{
+  background-color: #c1c1c1;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Geneva, sans-serif;
+}
+
+h1
+{
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
+  font-size: 20px;
+}
+
+div.wrapper
+{
+  margin: 20px 25%;
+  background-color:#797979;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+h2
+{
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+span#output
+{
+  margin-left: 10px;
+  color: yellow;
+}
