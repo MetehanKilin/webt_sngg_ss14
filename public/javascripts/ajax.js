@@ -1,17 +1,23 @@
 function sendGuessHelper() {
-  var g = document.getElementById("guess").value;
+  var g = $("#guess").val();
   console.log("Guess: "+g);
   sendGuess(g);
 }
 
 function sendGuess(g) {
-  var requestObj = new XMLHttpRequest();
-  requestObj.onreadystatechange = function() {
-    if (requestObj.readyState == 4 && requestObj.status == 200){
-      document.getElementById("output").innerHTML = requestObj.responseText;
-      requestObj = null;
+
+  // Version 1 without error handling!
+  $("#output").load("guess?g="+g);
+
+
+  // Version 2 with error handling!
+/*
+ $("#output").load("guess?g="+g, function(responseTxt, statusTxt, xhr){
+    if(statusTxt == "sucess") {
+      console.log("Sucess");
+    } else if (statusTxt == "error") {
+      alert("AJAX ERROR with status "+ xhr.status+": "+xhr.statusText);
     }
-  }
-  requestObj.open("GET", "guess?g="+g, true);
-  requestObj.send();
+  });
+*/
 }
