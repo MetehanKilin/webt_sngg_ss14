@@ -11,6 +11,26 @@
       <li>Click the submit button to see if you're guess is right or wrong!</li>
     </ol>
   </div>
+  <script type="text/javascript">
+
+    var webSocket;
+    $(function() {
+      var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
+      webSocket = new WS("@routes.Application.guess().webSocketURL(request)");
+
+      webSocket.onmessage = receiveEvent;
+     })
+
+    function sendGuess() {
+      var g = $("#guess").val();
+      webSocket.send(g);
+    };
+
+    function receiveEvent(event) {
+      $("#output").html(event.data);
+    };
+
+  </script>
 
   <div id="gameWrapper" class="wrapper">
     <h2>Game</h2>
@@ -19,7 +39,7 @@
         <input id="guess" name="guess" type="number" autofocus />
         <span id="output" />
       </p>
-      <input type="button" value="Submit" onclick="sendGuessHelper()" />
+      <input type="button" value="Submit" onclick="sendGuess()" />
       <input type="button" value="New" onclick="location.reload(true)" />
   </div>
 }
