@@ -35,9 +35,7 @@ public class Application extends Controller {
           public void invoke(String g) {
             try {
               int guess = Integer.parseInt(g);
-              System.out.println("Guess g: "+g);
               String res = "< secret number!";
-              System.out.println("Result: "+ res);
               if (guess > r) {
                 res = "> secret number!";
               } else if (guess == r) {
